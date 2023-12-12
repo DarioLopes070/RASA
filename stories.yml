@@ -29,16 +29,11 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: beginning
+- story: dont know name
   steps:
   - intent: greet
   - action: utter_greet
   - intent: know_name
-  - checkpoint: check_asked_name
-
-- story: dont know name
-  steps: 
-  - checkpoint: check_asked_name 
   - slot_was_set:
     - ask_name: null
   - action: utter_ask_person_name
@@ -49,10 +44,30 @@ stories:
     - ask_name: dario
   - action: utter_name_saved
 
+# - story: aready know name
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: know_name
+#   - slot_was_set:
+#     - ask_name: null
+#   - action: utter_ask_person_name
+#   - intent: my_name
+#   - slot_was_set:
+#     - ask_name: dario
+#   - action: utter_name_saved
+#   - intent: know_name
+#   - slot_was_set:
+#     - ask_name: dario
+#   - action: utter_answer_name
+#   - intent: goodbye
+#   - action: utter_goodbye
 
-- story: know name
+- story: new path 2
   steps:
-  - checkpoint: check_asked_name 
+  - intent: greet
+  - action: utter_greet  
+  - intent: know_name
   - slot_was_set:
     - ask_name: dario
   - action: utter_answer_name
