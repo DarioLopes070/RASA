@@ -1,9 +1,7 @@
 version: "3.1"
-
 nlu:
 - intent: greet
   examples: |
-    - ola
     - oi
     - hey
     - hello
@@ -18,7 +16,6 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-
 - intent: goodbye
   examples: |
     - cu
@@ -31,7 +28,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
 - intent: affirm
   examples: |
     - yes
@@ -40,7 +36,6 @@ nlu:
     - of course
     - that sounds good
     - correct
-
 - intent: deny
   examples: |
     - no
@@ -50,7 +45,6 @@ nlu:
     - don't like that
     - no way
     - not really
-
 - intent: mood_great
   examples: |
     - perfect
@@ -67,7 +61,6 @@ nlu:
     - so so perfect
     - so good
     - so perfect
-
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -84,38 +77,24 @@ nlu:
     - extremly sad
     - so saad
     - so sad
-
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-
-- intent: ask_me_something
+- intent: know_name
   examples: |
-    - me faça uma pergunta
-    - pergunte algo
-    - pergunte qualquer coisa
-    - fale comigo
-
-- intent: ask_me_animal
+    - você sabe meu nome?
+    - pegar nome
+- intent: my_name
   examples: |
-    - qual meu animal favorito?
-    - você sabe meu animal favorito?
-    - de que animal eu gosto?
-
-- intent: favorite_animal
-  examples: |
-    - [cachorro](animal)
-    - [gato](animal)
-    - [leão](animal)
-    - [cobra](animal)
-    - [tartaruga](animal)
-    - [coelho](animal)
-    - [arara](animal)
-    - [elefante](animal)
-    - [girafa](animal)
-    - [onça](animal)
-    - [guepardo](animal)
-    - [lince](animal)
+    - [dario](person_name)
+    - [maria](person_name)
+    - [kaue](person_name)
+    - [joao](person_name)
+    - [marta](person_name)
+    - [jesus](person_name)
+    - [pedro](person_name)
+    - [liz](person_name)
+    - [dario](person_name)
