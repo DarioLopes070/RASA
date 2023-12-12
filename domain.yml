@@ -3,24 +3,26 @@ intents:
 - affirm
 - bot_challenge
 - deny
+- feedback_value
 - goodbye
 - greet
-- know_name
 - mood_great
 - mood_unhappy
-- my_name
+- send_feedback
 entities:
-- person_name
+- value_level
 slots:
-  ask_name:
-    type: text
+  satisfaction_level:
+    type: float
     influence_conversation: true
+    min_value: 0
+    max_value: 5
     mappings:
     - type: from_entity
-      entity: person_name
+      entity: value_level
 responses:
   utter_greet:
-  - text: Oi
+  - text: Hey! How are you?
   utter_cheer_up:
   - text: 'Here is something to cheer you up:'
     image: https://i.imgur.com/nGF1K8f.jpg
@@ -32,18 +34,21 @@ responses:
   - text: Bye
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
-  utter_ask_person_name:
-  - text: Infelizmente não, qual é o seu nome?
-  utter_answer_name:
-  - text: Claro que sim, seu nome é {ask_name}
-  utter_name_saved:
-  - text: Nunca vou me esquecer do seu nome ;)
+  utter_ask_feedback:
+  - text: De 1 a 5, onde 1 é muito insatisfeito e 5 é muito satisfeito, qual o seu nível de satisfação?
+  utter_answer_1:
+  - text: Muito bom estou feliz por você estar satisfeito
+  utter_answer_2:
+  - text: Que bom, vou tentar ficar ainda melhor para a próxima vez
+  utter_answer_3:
+  - text: Sinto muito por isso, vou tentar melhorar para uma próxima vez
+  utter_answer_4:
+  - text: Esta nota não está nas opções
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 actions:
-- utter_greet
-- utter_name_saved
-- utter_ask_person_name
-- utter_answer_name
-- utter_goodbye
+- utter_answer_1
+- utter_ask_feedback
+- utter_answer_2
+- utter_answer_3

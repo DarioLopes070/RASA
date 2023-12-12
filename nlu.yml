@@ -2,7 +2,6 @@ version: "3.1"
 nlu:
 - intent: greet
   examples: |
-    - oi
     - hey
     - hello
     - hi
@@ -83,18 +82,14 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-- intent: know_name
+- intent: send_feedback
   examples: |
-    - você sabe meu nome?
-    - pegar nome
-- intent: my_name
+    - quero deixar meu feedback
+- intent: feedback_value
   examples: |
-    - [dario](person_name)
-    - [maria](person_name)
-    - [kaue](person_name)
-    - [joao](person_name)
-    - [marta](person_name)
-    - [jesus](person_name)
-    - [pedro](person_name)
-    - [liz](person_name)
-    - [dario](person_name)
+    - [1](value_level)
+    - [2](value_level)
+    - [3](value_level)
+    - [4](value_level)
+    - [5](value_level)
+

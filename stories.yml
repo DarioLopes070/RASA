@@ -29,45 +29,51 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: dont know name
+
+- story: beginning
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: know_name
-  - slot_was_set:
-    - ask_name: null
-  - action: utter_ask_person_name
-  - intent: my_name
+  - intent: send_feedback
+  - action: utter_ask_feedback
+  - intent: feedback_value
     entities:
-    - person_name: dario
+    - value_level: 5
   - slot_was_set:
-    - ask_name: dario
-  - action: utter_name_saved
-
-# - story: aready know name
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: know_name
-#   - slot_was_set:
-#     - ask_name: null
-#   - action: utter_ask_person_name
-#   - intent: my_name
-#   - slot_was_set:
-#     - ask_name: dario
-#   - action: utter_name_saved
-#   - intent: know_name
-#   - slot_was_set:
-#     - ask_name: dario
-#   - action: utter_answer_name
-#   - intent: goodbye
-#   - action: utter_goodbye
-
-- story: new path 2
+    - satisfaction_level: 5
+  - checkpoint: check_feedback    
+ 
+- story: asking feedback 2
   steps:
-  - intent: greet
-  - action: utter_greet  
-  - intent: know_name
+  - checkpoint: check_feedback 
+  - or:
+    - slot_was_set:
+        - satisfaction_level: 1
+    - slot_was_set:
+        - satisfaction_level: 2   
+  - action: utter_answer_3
+ 
+
+- story: asking feedback 3
+  steps:
+  - checkpoint: check_feedback 
+  - or:
+    - slot_was_set:
+        - satisfaction_level: 3
+    - slot_was_set:
+        - satisfaction_level: 4   
+  - action: utter_answer_2
+
+- story: asking feedback 4
+  steps:
+  - checkpoint: check_feedback 
   - slot_was_set:
-    - ask_name: dario
-  - action: utter_answer_name
+      - satisfaction_level: 5 
+  - action: utter_answer_1
+    
+- story: asking feedback 5
+  steps:
+  - checkpoint: check_feedback 
+  - slot_was_set:
+      - satisfaction_level: 0 
+  - action: utter_answer_4 
+    
+
