@@ -1,0 +1,69 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - ask_me_something
+  - ask_me_animal
+  - favorite_animal
+  - ask_me_animal_now
+
+entities:
+- animal
+
+slots:
+  wich_animal:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: animal
+
+responses:
+  utter_greet:
+  - text: "Oi"
+  - text: "Olá"
+  - text: "Opa"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_favorite_animal:
+  - text: "Qual seu animal favorito?"
+  - text: "Qual seu pet favorito?"
+  - text: "Qual animal você mais gosta?"
+  - text: "De que animal você mais gosta?"
+
+  utter_your_favorite_animal:
+  - text: "Óbvio que sei, você gosta do/a {wich_animal}"
+  - text: "Claro que sim, você é louco por {wich_animal}"
+
+  utter_ask_favorite_animal_unknow:
+  - text: "Infelizmente não, qual é o seu animal favorito?"
+  - text: "Ainda não, mas me conte agora, qual é o seu animal favorito?"
+  - text: "Ainda não tenho essa informação, por favor me conte qual é o seu animal favorito."
+
+  utter_animal_saved:
+  - text: "Pronto, agora não esqueço mais ;)"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

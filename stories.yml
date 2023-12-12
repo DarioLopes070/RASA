@@ -1,0 +1,71 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: ask name 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_me_something
+  - action: utter_ask_favorite_animal
+  - checkpoint: check_set_animal  
+
+- story: set animal
+  steps:
+  - checkpoint: check_set_animal
+  - intent: favorite_animal
+    entities:
+    - animal: gato
+  - slot_was_set:
+    - wich_animal: gato
+  - action: utter_animal_saved   
+  
+
+- story: beginning   
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_me_animal
+  - checkpoint: check_asked_animal
+
+- story: ask name 2
+  steps:
+  - checkpoint: check_asked_animal
+  - slot_was_set:
+    - wich_animal: null  
+  - action: utter_ask_favorite_animal_unknow
+  - checkpoint: check_set_animal
+
+- story: animal knowed 
+  steps:
+  - checkpoint: check_asked_animal 
+  - slot_was_set:
+    - wich_animal: gato
+  - action: utter_your_favorite_animal
