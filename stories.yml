@@ -35,37 +35,33 @@ stories:
   - action: utter_greet
   - intent: ask_me_something
   - action: utter_ask_favorite_animal
-  - checkpoint: check_set_animal  
-
-- story: set animal
-  steps:
-  - checkpoint: check_set_animal
   - intent: favorite_animal
     entities:
     - animal: gato
   - slot_was_set:
     - wich_animal: gato
-  - action: utter_animal_saved   
-  
+  - action: utter_animal_saved    
 
-- story: beginning   
+- story: ask name 2
   steps:
   - intent: greet
   - action: utter_greet
   - intent: ask_me_animal
-  - checkpoint: check_asked_animal
-
-- story: ask name 2
-  steps:
-  - checkpoint: check_asked_animal
   - slot_was_set:
     - wich_animal: null  
   - action: utter_ask_favorite_animal_unknow
-  - checkpoint: check_set_animal
+  - intent: favorite_animal
+    entities:
+    - animal: gato
+  - slot_was_set:
+    - wich_animal: gato
+  - action: utter_animal_saved 
 
 - story: animal knowed 
   steps:
-  - checkpoint: check_asked_animal 
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_me_animal
   - slot_was_set:
     - wich_animal: gato
   - action: utter_your_favorite_animal
