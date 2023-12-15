@@ -2,72 +2,122 @@ version: "3.1"
 
 stories:
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
-
-- story: dont know name
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: know_name
-  - slot_was_set:
-    - ask_name: null
-  - action: utter_ask_person_name
-  - intent: my_name
-    entities:
-    - person_name: dario
-  - slot_was_set:
-    - ask_name: dario
-  - action: utter_name_saved
-
-# - story: aready know name
+# - story: loop_story
 #   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: know_name
+#   - intent: make_reservation
+#   - action: utter_make_reservation
+#   - action: churrascaria_form
+#   - active_loop: churrascaria_form
+#   - intent: stop
+#   - action: utter_ask_continue
+#   - action: action_deactivate_loop
+#   - action: churrascaria_form
+#   - active_loop: null   
 #   - slot_was_set:
-#     - ask_name: null
-#   - action: utter_ask_person_name
-#   - intent: my_name
-#   - slot_was_set:
-#     - ask_name: dario
-#   - action: utter_name_saved
-#   - intent: know_name
-#   - slot_was_set:
-#     - ask_name: dario
-#   - action: utter_answer_name
-#   - intent: goodbye
-#   - action: utter_goodbye
+#     - requested_slot: null
+#   - action: utter_all_information
 
-- story: new path 2
-  steps:
-  - intent: greet
-  - action: utter_greet  
-  - intent: know_name
-  - slot_was_set:
-    - ask_name: dario
-  - action: utter_answer_name
+
+
+
+
+# - story: test
+#   steps:
+#   - intent: make_reservation
+#   - action: utter_make_reservation
+#   - action: utter_ask_qtd_people
+#   - intent: qtd_people_reserve 
+#   # - slot_was_set:
+#   #   - qtd_people: 4
+#   # - action: action_calc_people
+#   # - action: utter_show_qtd_people
+#   - action: utter_ask_time
+#   - intent: time_reservation
+#   # - slot_was_set:
+#   #   - time: 01:20
+#   # - action: action_val_time
+#   # - action: utter_show_time
+#   - action: utter_ask_type_service
+#   - intent: type_of_reservation  
+#   - action: utter_ask_reserve_name  
+#   - intent: name_on_reservation
+#   - action: utter_all_information
+#   - action: action_reset_slots
+#   - intent: ola_oi
+#   - action: utter_all_information
+# - story: interactive_story_1
+#   steps:
+#   - intent: make_reservation
+#   - action: utter_make_reservation
+#   - action: utter_ask_qtd_people
+#   - intent: qtd_people_reserve
+#     entities:
+#     - qtd_people: '6'
+#   - slot_was_set:
+#     - qtd_people: '6'
+#   - action: utter_ask_time
+#   - intent: time_reservation
+#     entities:
+#     - time: 12:00
+#   - slot_was_set:
+#     - time: 12:00
+#   - action: utter_ask_type_service
+#   - intent: type_of_reservation
+#     entities:
+#     - type_service: rodizio
+#   - slot_was_set:
+#     - type_service: rodizio
+#   - action: utter_ask_reserve_name
+#   - intent: name_on_reservation
+#     entities:
+#     - reserve_name: dario
+#   - slot_was_set:
+#     - reserve_name: dario
+#   - action: utter_all_information
+#   - action: action_reset_slots
+#   - intent: ola_oi
+#   - action: utter_all_information
+
+# - story: interactive_story_1
+#   steps:
+#   - intent: make_reservation
+#   - action: utter_make_reservation
+#   - action: churrascaria_form
+#   - active_loop: churrascaria_form
+#   - slot_was_set:
+#     - requested_slot: qtd_people
+#   - intent: qtd_people_reserve
+#     entities:
+#     - qtd_people: 7
+#   - slot_was_set:
+#     - qtd_people: 7
+#   - action: churrascaria_form
+#   - slot_was_set:
+#     - requested_slot: time
+#   - intent: time_reservation
+#     entities:
+#     - time: 10:10
+#   - slot_was_set:
+#     - time: 10:10
+#   - action: churrascaria_form
+#   - slot_was_set:
+#     - requested_slot: type_service
+#   - intent: type_of_reservation
+#     entities:
+#     - type_service: rodizio
+#   - slot_was_set:
+#     - type_service: rodizio
+#   - action: churrascaria_form
+#   - slot_was_set:
+#     - requested_slot: reserve_name
+#   - intent: name_on_reservation
+#     entities:
+#     - reserve_name: marta
+#   - slot_was_set:
+#     - reserve_name: marta
+#   - action: churrascaria_form
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: action_deactivate_loop
+#   - action: utter_all_information
