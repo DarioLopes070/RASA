@@ -1,100 +1,77 @@
 version: "3.1"
 nlu:
-- intent: greet
+- intent: make_reservation
   examples: |
+    - gostaria de fazer uma reserva
+    - quero fazer uma reserva
+    - quero marcar um horário
+    - quero agendar um horário
+    - gostaria de marcar um horário
+- intent: qtd_people_reserve
+  examples: |
+    - [1](qtd_people)
+    - [2](qtd_people)
+    - [3](qtd_people)
+    - [4](qtd_people)
+    - [5](qtd_people)
+    - [6](qtd_people)
+    - [7](qtd_people)
+    - [8](qtd_people)
+    - [9](qtd_people)
+    - [10](qtd_people)
+    - [11](qtd_people)
+ 
+- intent: time_reservation
+  examples: |
+    - [01:00](time) hora
+    - [02:00](time) horas
+    - [03:00](time) horas
+    - [04:00](time) horas
+    - [05:00](time) horas
+    - [06:00](time) horas
+    - [07:00](time) horas
+    - [08:00](time) horas
+    - [09:00](time) horas
+    - [10:00](time) horas
+    - [11:00](time) horas
+    - [12:00](time) horas
+    - [13:00](time) horas
+    - [14:00](time) horas
+    - [15:00](time) horas
+    - [16:00](time) horas
+    - [17:00](time) horas
+    - [18:00](time) horas
+    - [19:00](time) horas
+    - [20:00](time) horas
+    - [21:00](time) horas
+    - [22:00](time) horas
+    - [23:00](time) horas
+    - [24:00](time) horas
+
+- intent: type_of_reservation
+  examples: |
+    - [a la carte](type_service)
+    - [rodizio](type_service)
+
+- intent: name_on_reservation
+  examples: |
+    - [dario](reserve_name)
+    - [mario](reserve_name)
+    - [maria](reserve_name)
+    - [joao](reserve_name)
+    - [marcos](reserve_name)
+    - [lucas](reserve_name)
+    - [liz](reserve_name)
+    - [kaue](reserve_name)
+    - [marta](reserve_name)
+- intent: ola_oi
+  examples: |
+    - ola
     - oi
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
-- intent: goodbye
+- intent: stop
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
-- intent: affirm
+    - sair
+    - cancelar
+- intent: continue
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
-- intent: know_name
-  examples: |
-    - você sabe meu nome?
-    - pegar nome
-- intent: my_name
-  examples: |
-    - [dario](person_name)
-    - [maria](person_name)
-    - [kaue](person_name)
-    - [joao](person_name)
-    - [marta](person_name)
-    - [jesus](person_name)
-    - [pedro](person_name)
-    - [liz](person_name)
-    - [dario](person_name)
+    - continuar
