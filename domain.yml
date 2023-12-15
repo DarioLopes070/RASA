@@ -1,49 +1,101 @@
 version: '3.1'
 intents:
-- affirm
-- bot_challenge
-- deny
-- goodbye
-- greet
-- know_name
-- mood_great
-- mood_unhappy
-- my_name
+- continue
+- make_reservation
+- name_on_reservation
+- ola_oi
+- qtd_people_reserve
+- stop
+- time_reservation
+- type_of_reservation
 entities:
-- person_name
+- type_service
+- qtd_people
+- time
+- reserve_name
 slots:
-  ask_name:
+  qtd_people:
+    type: float
+    influence_conversation: true
+    min_value: 1
+    max_value: 100
+    mappings:
+    - type: from_entity
+      entity: qtd_people
+  time:
+    type: float
+    influence_conversation: true
+    min_value: 0
+    max_value: 24
+    mappings:
+    - type: from_entity
+      entity: time
+  type_service:
+    type: categorical
+    influence_conversation: true
+    values:
+    - a_la_carte
+    - rodizio
+    mappings:
+    - type: from_entity
+      entity: type_service
+  reserve_name:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: person_name
+      entity: reserve_name
+forms:
+  churrascaria_form:
+    required_slots:
+    - qtd_people
+    - time
+    - type_service
+    - reserve_name
 responses:
-  utter_greet:
-  - text: Oi
-  utter_cheer_up:
-  - text: 'Here is something to cheer you up:'
-    image: https://i.imgur.com/nGF1K8f.jpg
-  utter_did_that_help:
-  - text: Did that help you?
-  utter_happy:
-  - text: Great, carry on!
-  utter_goodbye:
-  - text: Bye
-  utter_iamabot:
-  - text: I am a bot, powered by Rasa.
-  utter_ask_person_name:
-  - text: Infelizmente não, qual é o seu nome?
-  utter_answer_name:
-  - text: Claro que sim, seu nome é {ask_name}
-  utter_name_saved:
-  - text: Nunca vou me esquecer do seu nome ;)
+  utter_make_reservation:
+  - text: Vamos marcar uma reserva agora mesmo!
+  utter_ask_qtd_people:
+  - text: Para quantas pessoas será esta reserva?
+  utter_ask_time:
+  - text: Para qual horário deseja fazer a reseva?
+  utter_ask_type_service:
+  - text: |-
+      Qual tipo de serviço gostaria de reservar:
+      a la carte
+      rodizio
+  utter_ask_reserve_name:
+  - text: A reserva será feita no nome de quem?
+  utter_all_information:
+  - text: |-
+      A reserva foi feita para {qtd_people} pessoas.
+      Marcado para às {time}
+      O serviço escolhido foi {type_service}
+      E a reserva foi feita no nome de {reserve_name}
+  utter_show_qtd_people:
+  - text: São {qtd_people} pessoas
+  utter_show_time:
+  - text: Marcado para {time} horas
+  utter_ask_continue:
+  - text: Tem certeza que quer abandonar a reserva?
+    buttons:
+    - title: "CONTINUAR"
+      payload: '/inform{{"continue":"continuar"}}'
+    - title: "SAIR"
+      payload: '/inform{{"stop":"sair"}}'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 actions:
-- utter_greet
-- utter_name_saved
-- utter_ask_person_name
-- utter_answer_name
-- utter_goodbye
+- utter_all_information
+- utter_make_reservation
+- action_reset_slots
+- utter_ask_time
+- utter_ask_reserve_name
+- utter_ask_qtd_people
+- utter_ask_type_service
+- action_calc_people
+- utter_show_qtd_people
+- action_val_time
+- utter_show_time
+- utter_ask_continue
