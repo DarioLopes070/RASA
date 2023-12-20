@@ -9,34 +9,58 @@ rules:
 
 
 
-- rule: Activate churrascaria form
+# - rule: Activate churrascaria form
+#   steps:
+#   - intent: make_reservation
+#   - action: utter_make_reservation
+#   - action: churrascaria_form  
+#   - active_loop: churrascaria_form  
+
+# - rule: Submit churrascaria form
+#   condition:
+#   - active_loop: churrascaria_form
+#   steps: 
+#   # - intent: stop
+#   # # - action: utter_ask_continue
+#   # - action: action_deactivate_loop  
+#   - action: churrascaria_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_all_information
+#   # - intent: ola_oi
+#   # - action: action_reset_slots
+#   # - action: utter_all_information
+
+
+- rule: sair do loop
+  condition:
+  - active_loop: churrascaria_form
+  # condition:
+  # - active_loop: churrascaria_form
   steps:
-  - intent: make_reservation
-  - action: utter_make_reservation
+  - intent: stop
+  - action: utter_ask_continue
+
+- rule: Activate churrascaria form after stop
+  steps:
+  - intent: return_to_reservation
+  - action: utter_back_to_loop
   - action: churrascaria_form  
   - active_loop: churrascaria_form  
 
-- rule: Submit churrascaria form
-  condition:
-  - active_loop: churrascaria_form
-  steps: 
-  - intent: stop
-  # - action: utter_ask_continue
-  - action: action_deactivate_loop  
-  - action: churrascaria_form
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_all_information
-  # - intent: ola_oi
-  # - action: action_reset_slots
-  # - action: utter_all_information
+- rule: Stop loop
+  steps:
+  - intent: continue  
+  - action: action_deactivate_loop
 
-
-# - rule: sair do loop
-#   condition:
-#   - active_loop: churrascaria_form
+# - rule: Calc people
 #   steps:
-#   - intent: stop
-#   - action: utter_ask_continue
-#   - action: action_deactivate_loop
+#   - intent: qtd_people_reserve
+#   - action: validate_churrascaria_form
+
+
+# - rule: Validation time
+#   steps:
+#   - intent: time_reservation
+#   - action: validate_churrascaria_form

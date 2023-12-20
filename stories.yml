@@ -2,6 +2,31 @@ version: "3.1"
 
 stories:
 
+- story: Activate_churrascaria_form
+  steps:
+  - intent: make_reservation  
+  - action: utter_make_reservation
+  - action: churrascaria_form  
+  - active_loop: churrascaria_form  
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_all_information  
+  - action: action_reset_slots
+
+# - story: Submit_churrascaria_form
+#   # condition:
+#   # - active_loop: churrascaria_form
+#   steps: 
+#   # - intent: stop
+#   # # - action: utter_ask_continue
+#   # - action: action_deactivate_loop  
+#   - action: churrascaria_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_all_information
+
 
 # - story: loop_story
 #   steps:
@@ -121,3 +146,4 @@ stories:
 #     - requested_slot: null
 #   - action: action_deactivate_loop
 #   - action: utter_all_information
+

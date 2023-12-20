@@ -7,6 +7,7 @@ nlu:
     - quero marcar um horário
     - quero agendar um horário
     - gostaria de marcar um horário
+    - gostaria de marcar uma reserva
 - intent: qtd_people_reserve
   examples: |
     - [1](qtd_people)
@@ -20,7 +21,7 @@ nlu:
     - [9](qtd_people)
     - [10](qtd_people)
     - [11](qtd_people)
- 
+    - [6](qtd_people)
 - intent: time_reservation
   examples: |
     - [01:00](time) hora
@@ -47,12 +48,10 @@ nlu:
     - [22:00](time) horas
     - [23:00](time) horas
     - [24:00](time) horas
-
 - intent: type_of_reservation
   examples: |
     - [a la carte](type_service)
     - [rodizio](type_service)
-
 - intent: name_on_reservation
   examples: |
     - [dario](reserve_name)
@@ -72,6 +71,10 @@ nlu:
   examples: |
     - sair
     - cancelar
+    - stop
 - intent: continue
   examples: |
     - continuar
+- intent: return_to_reservation
+  examples: |
+    - voltar para a reserva

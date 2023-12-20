@@ -5,12 +5,13 @@ intents:
 - name_on_reservation
 - ola_oi
 - qtd_people_reserve
+- return_to_reservation
 - stop
 - time_reservation
 - type_of_reservation
 entities:
-- type_service
 - qtd_people
+- type_service
 - time
 - reserve_name
 slots:
@@ -22,6 +23,9 @@ slots:
     mappings:
     - type: from_entity
       entity: qtd_people
+      conditions:
+      - active_loop: churrascaria_form
+        requested_slot: qtd_people
   time:
     type: float
     influence_conversation: true
@@ -30,6 +34,9 @@ slots:
     mappings:
     - type: from_entity
       entity: time
+      conditions:
+      - active_loop: churrascaria_form
+        requested_slot: time
   type_service:
     type: categorical
     influence_conversation: true
@@ -79,16 +86,19 @@ responses:
   utter_ask_continue:
   - text: Tem certeza que quer abandonar a reserva?
     buttons:
-    - title: "CONTINUAR"
-      payload: '/inform{{"continue":"continuar"}}'
-    - title: "SAIR"
-      payload: '/inform{{"stop":"sair"}}'
+    - title: CONTINUAR
+      payload: /inform{{"return_to_reservation":"voltar para a reserva"}}
+    - title: SAIR
+      payload: /inform{{"continue":"continuar"}}
+  utter_back_to_loop:
+  - text: Termine de agendar sua reserva!
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 actions:
-- utter_all_information
+- utter_ask_continue
 - utter_make_reservation
+- utter_all_information
 - action_reset_slots
 - utter_ask_time
 - utter_ask_reserve_name
@@ -98,4 +108,5 @@ actions:
 - utter_show_qtd_people
 - action_val_time
 - utter_show_time
-- utter_ask_continue
+- utter_back_to_loop
+- validate_churrascaria_form
